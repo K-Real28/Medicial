@@ -35,7 +35,7 @@ else
     app.UseHsts();
 }
 
-////app.UseSpa(spa =>
+//app.UseSpa(spa =>
 //{
 //    spa.Options.SourcePath = "ClientApp";
 //    if (app.Environment.IsDevelopment())
