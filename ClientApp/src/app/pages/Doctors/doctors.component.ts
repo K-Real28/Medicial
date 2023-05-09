@@ -22,7 +22,11 @@ export class DoctorsComponent {
 
 interface Doctor {
   id: Int32Array;
-  name: string;
+  fullName: string;
+  shortInfo: string;
+  costOfVisit: Int32Array;
+  phoneNumber: Int32Array;
+  expOfSpec: Int32Array;
 }
 
 //export class DoctorsComponent {

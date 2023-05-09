@@ -6,12 +6,20 @@
     <tr>
       <th>Id</th>
       <th>Name</th>
+      <th>Короткая информация</th>
+      <th>Цена посещения </th>
+      <th>Номер телефона</th>
+      <th>Опыт</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let doctor of doctors">
       <td>{{ doctor.id}}</td>
-      <td>{{ doctor.name }}</td>
+      <td>{{ doctor.fullName }}</td>
+      <td>{{ doctor.shortInfo }}</td>
+      <td>{{ doctor.costOfVisit }}</td>
+      <td>{{ doctor.phoneNumber }}</td>
+      <td>{{ doctor.expOfSpec }}</td>
     </tr>
   </tbody>
 </table>

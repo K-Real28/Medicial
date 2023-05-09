@@ -1,1 +1,17 @@
-<h1>Specializations</h1>
+<h1>Специализации врачей</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Название</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let specialization of specializations">
+      <td>{{ specialization.id}}</td>
+      <td>{{ specialization.name }}</td>
+    </tr>
+  </tbody>
+</table>
