@@ -3,7 +3,7 @@
 namespace Medicial.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -17,6 +17,7 @@ namespace Medicial.Controllers
         {
             _logger = logger;
         }
+
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()

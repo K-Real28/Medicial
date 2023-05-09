@@ -10,7 +10,7 @@ export class WeatherForecastComponent {
   public forecasts?: WeatherForecast[];
 
   constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
+    http.get<WeatherForecast[]>('api/weatherforecast').subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
   }

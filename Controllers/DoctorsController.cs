@@ -13,7 +13,9 @@ namespace Medicial.Controllers
         {
             _context = context;
         }
-        // GET: 
+        [HttpGet]
+
+        //GET: 
         [HttpGet]
         [Route("GetDoctor")]
         public ActionResult<List<Doctor>> GetDoctors()

@@ -7,23 +7,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Medicial.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CitiesController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public CitiesController(AppDbContext context)
+        private readonly IMapper _mapper;
+        public CitiesController(AppDbContext context, IMapper mapper)
         {
             _context = context;
-        }
-
-        private readonly IMapper _mapper;
-        public CitiesController(IMapper mapper)
-        {
             _mapper = mapper;
         }
 
-        // GET: 
+        //GET: 
         [HttpGet]
         [Route("GetCity")]
         public ActionResult<List<City>> GetCities()
@@ -37,7 +33,7 @@ namespace Medicial.Controllers
         //public IEnumerable<string> GetCities()
         //{
         //    var cities = _context.Cities.Select(c => c.Name).ToList();
-        //       return Ok(cities);
+        //    return Ok(cities);
         //}
     }
 }

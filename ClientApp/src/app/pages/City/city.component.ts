@@ -1,4 +1,5 @@
-import {Component, NgModule} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, NgModule } from '@angular/core';
 import { City, Client } from '../../services/Client';
 
 @Component({
@@ -7,28 +8,40 @@ import { City, Client } from '../../services/Client';
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.css'],
 })
-
 export class CityComponent {
+  public cities: Array<City> = new Array<City>();
 
-  cities: Array<City> = new Array<City>();
-  constructor(
-    private client: Client
-  ) { }
-  ngOnInit(): void {
-    this.getCities();
+  constructor(http: HttpClient) {
+    http.get<City[]>('api/cities/GetCity').subscribe(result => {
+      this.cities = result;
+    }, error => console.error(error));
   }
 
-  getCities() {
-    this.client.getCity().subscribe(Response => {
-      this.cities = Response;
-    })
-  }
-  title = 'rout';
+  title = 'angularapp';
 }
-interface WeatherForecast {
-  Id: number;
+
+interface CityPage {
+  id: Int32Array;
   name: string;
 }
+//export class CityComponent {
+
+//  cities: Array<City> = new Array<City>();
+//  constructor(
+//    private client: Client
+//  ) { }
+//  ngOnInit(): void {
+//    this.getCities();
+//  }
+
+//  getCities() {
+//    this.client.citiesApiAll().subscribe(response => {
+//      this.cities = response;
+//    })
+//  }
+//  title = 'rout';
+//}
+
 
 //import { Component, OnInit } from '@angular/core';
 //import { HttpClient } from '@angular/common/http';

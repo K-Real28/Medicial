@@ -1,1 +1,17 @@
 <h1>Доктора</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let doctor of doctors">
+      <td>{{ doctor.id}}</td>
+      <td>{{ doctor.name }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -3,6 +3,7 @@ using Medicial;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,22 @@ builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql("name=ConnectionStrings:DefaultConnection"));
 //builder.Services.AddSpaStaticFiles();
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "ClientApp/dist";
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -41,12 +58,16 @@ else
 //    if (app.Environment.IsDevelopment())
 //    {
 //        spa.UseAngularCliServer(npmScript: "start");
-//        //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+//        //spa.UseProxyToSpaDevelopmentServer("http://localhost:44417");
 //    }
 //});
 app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
 
+app.UseCors("AllowAllOriginal");
+
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseDefaultFiles();
 
