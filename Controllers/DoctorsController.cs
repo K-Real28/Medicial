@@ -1,4 +1,7 @@
-﻿using Medicial.Models;
+﻿using AutoMapper;
+using Medicial.Dto.Cities;
+using Medicial.Dto.Doctors;
+using Medicial.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +12,22 @@ namespace Medicial.Controllers
     public class DoctorsController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public DoctorsController(AppDbContext context)
+        private readonly IMapper _mapper;
+        public DoctorsController(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         [HttpGet]
 
         //GET: 
         [HttpGet]
         [Route("GetDoctor")]
-        public ActionResult<List<Doctor>> GetDoctors()
+        public ActionResult<List<DoctorDto>> GetDoctors()
         {
-            return _context.Doctors.ToList();
+            var doctors = _context.Doctors.ToList();
+            var doctorDtos = _mapper.Map<List<DoctorDto>>(doctors);
+            return doctorDtos;
         }
     }
 }

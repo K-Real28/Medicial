@@ -10,6 +10,7 @@ import { DoctorsComponent } from "./pages/Doctors/doctors.component";
 import { SpecializationsComponent } from "./pages/Specializations/specializations.component";
 import { PolyclinicsComponent } from "./pages/Polyclinics/polyclinics.component";
 import { WeatherForecastComponent } from "./pages/Weather/weather.component";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [{ path: 'main', component: MainComponent },
 { path: 'city', component: CityComponent },
@@ -27,12 +28,13 @@ const routes: Routes = [{ path: 'main', component: MainComponent },
     CityComponent,
     DoctorsComponent,
     SpecializationsComponent,
+
     PolyclinicsComponent,
     AppComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, RouterOutlet, RouterLink, RouterLinkActive,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule,
   ],
   providers: [Client],
   bootstrap: [AppComponent]

@@ -22,10 +22,12 @@ namespace Medicial.Controllers
         //GET: 
         [HttpGet]
         [Route("GetCity")]
-        public ActionResult<List<City>> GetCities()
+        public ActionResult<List<CityDto>> GetCities()
         {
-            //return Ok(Cities.Select(City => _mapper.Map<CityDto>(City)); 
-            return _context.Cities.ToList();
+            var cities = _context.Cities.ToList();
+            var cityDtos = _mapper.Map<List<CityDto>>(cities);
+            return cityDtos;
+
         }
 
         //[HttpGet]

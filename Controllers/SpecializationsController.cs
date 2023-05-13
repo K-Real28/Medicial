@@ -1,4 +1,7 @@
-﻿using Medicial.Models;
+﻿using AutoMapper;
+using Medicial.Dto.Cities;
+using Medicial.Dto.Specializations;
+using Medicial.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +12,20 @@ namespace Medicial.Controllers
     public class SpecializationsController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public SpecializationsController(AppDbContext context)
+        private readonly IMapper _mapper;
+        public SpecializationsController(AppDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
         // GET: 
         [HttpGet]
         [Route("GetSpecialization")]
-        public ActionResult<List<Specialization>> GetSpecializations()
+        public ActionResult<List<SpecializationDto>> GetSpecializations()
         {
-            return _context.Specializations.ToList();
+            var specializations = _context.Specializations.ToList();
+            var specializationDtos = _mapper.Map<List<SpecializationDto>>(specializations);
+            return specializationDtos;
         }
     }
 }
