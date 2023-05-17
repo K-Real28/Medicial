@@ -14,12 +14,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [{ path: 'main', component: MainComponent },
 { path: 'city', component: CityComponent },
-
 { path: 'weather-root', component: WeatherForecastComponent },
 { path: 'doc', component: DoctorsComponent },
 { path: 'spec', component: SpecializationsComponent },
 { path: 'hospital', component: PolyclinicsComponent },
 { path: '**', redirectTo: '/' }];
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -28,7 +31,6 @@ const routes: Routes = [{ path: 'main', component: MainComponent },
     CityComponent,
     DoctorsComponent,
     SpecializationsComponent,
-
     PolyclinicsComponent,
     AppComponent
   ],
@@ -36,6 +38,7 @@ const routes: Routes = [{ path: 'main', component: MainComponent },
     BrowserModule, HttpClientModule, RouterOutlet, RouterLink, RouterLinkActive,
     RouterModule.forRoot(routes), FormsModule, ReactiveFormsModule,
   ],
+
   providers: [Client],
   bootstrap: [AppComponent]
 })
